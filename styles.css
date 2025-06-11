@@ -117,7 +117,38 @@
 main {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    height: 100vh;
+}
+
+.start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    gap: 10px;
+    text-align: center;
+}
+
+.loading-dots {
+    display: inline-block;
+    width: 1.5em;
+    text-align: left;
+}
+
+.loading-dots::after {
+    content: '...';
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+.delayed-button {
+    opacity: 0;
+    pointer-events: none;
+    animation: showButton 3s forwards;
+    animation-delay: 2s; /* delay before showing */
 }
 
 .card {
@@ -181,6 +212,20 @@ button:hover {
 }
 
 /* KEYFRAMES */
+
+@keyframes showButton {
+    to {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+@keyframes dots {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+}
 
 @keyframes moveInCircle {
     0% { transform: rotate(0deg);}
